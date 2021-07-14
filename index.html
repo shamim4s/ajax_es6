@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+<meta charset="UTF-8">
+  
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<!-- <script src="./ajaxes6.js"></script> -->
+
+
+  <title>CodePen - Ajax vanilla ES6</title>
+  
+  
+</head>
+
+<body>
+
+<h1 id="idh1">My First Heading</h1>
+<p id="idp">My first paragraph.</p>
+
+
+
+<p id="gettext"></p>
+<p id="sendtext"></p>
+<button id="idget">Get</button>
+<button id="idsend">send</button>
+
+<script>
+
+const buttonGet = document.getElementById("idget");
+const buttonSend = document.getElementById("idsend");
+const tagH1 = document.getElementById("idh1");
+const tagP = document.getElementById("idp");
+setInterval(ajaxcall, 1000);
+
+const  getFunc = function(){
+  document.getElementById("gettext").innerHTML="Get Button Clicked";
+  console.log("Get Data");
+};
+
+ const sendFunc = function(){
+   document.getElementById("sendtext").innerHTML="Send Button Clicked";
+    console.log("Send Data");
+};
+
+function h1Func(idh1){
+  tagH1.innerHTML= idh1;
+};
+
+function pFunc(idp){
+  tagP.innerHTML= idp;
+};
+function ajaxcall(){
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(data => data.json())
+  .then(json => {
+        // debugger
+        // console.log(json)
+        h1Func(json.title)
+        pFunc(json.completed)
+})
+  console.log("checked data done");
+}
+
+buttonGet.addEventListener("click", getFunc);
+buttonSend.addEventListener("click", sendFunc);
+</script>
+</body>
+
+</html>
+ 
